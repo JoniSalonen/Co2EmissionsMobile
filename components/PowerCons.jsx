@@ -1,14 +1,10 @@
 import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart
+  LineChart
 } from "react-native-chart-kit";
 import { Text,Dimensions } from 'react-native';
+import DayInput from "./DayInput";
 
 const PowerConsuption = () => {
 
@@ -39,12 +35,25 @@ const PowerConsuption = () => {
         'x-api-key':`${apiKey}`
          }});
       setPCons(results.data);
-      console.log(pCons);
+      
     }
     getPCons();
 
 }, []);  
 
+const dataValue = pCons.map(c => {
+  return { 
+    value: c.value
+  };
+});
+
+const dataTime = pCons.map(a => {
+  return {
+    startTime: a.start_time
+  }
+} );
+
+console.log(dataValue)
 
 
 
@@ -84,6 +93,8 @@ const chartConfig ={
     return(   
       <>
       <Text>Grams of CO2 from kWh</Text>
+      <Text>{dataValue.map(c => c.value)}</Text>
+      <Text>{dataTime.map(c => c.startTime)}</Text>
       <LineChart
         data={datasets}
         width={screenWidth}
@@ -99,6 +110,7 @@ const chartConfig ={
           borderRadius: 16
         }}
       />
+      <DayInput/>
     </>
     );
 };
