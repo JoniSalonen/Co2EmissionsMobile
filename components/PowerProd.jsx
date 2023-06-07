@@ -6,10 +6,10 @@ import {
 import { Text,Dimensions } from 'react-native';
 import DayInput from "./DayInput";
 
-const PowerConsuption = () => {
+const PowerProduction = () => {
 
 
-  const [pCons, setPCons] = useState([]);
+  const [pProd, setPprod] = useState([]);
   const chartRef = useRef();
   const screenWidth = Dimensions.get("window").width;  // from react-native
 
@@ -17,44 +17,40 @@ const PowerConsuption = () => {
   const [sTime, setSTime] = useState([`01%3A00%3A00`]);
   const [eDay, setEDay] = useState([`2023-05-01`]);
   const [eTime, setETime] = useState([`01%3A10%3A00`]);
-  const [data, setData] = useState([])
 
     const startTime = `${sDay}T${sTime}Z`
     const endTime = `${eDay}T${eTime}Z`
 
     const apiKey = `J0QSbDt3dr5FctqFckNvF59NCSBtdymR36sADRq2`
-    const variable = `265`
+    const variable = `266`
 
-  
     const baseUrl = `https://api.fingrid.fi/v1/variable/${variable}/events/json?start_time=${startTime}&end_time=${endTime}`
-    const URL =     `https://api.fingrid.fi/v1/variable/265/events/json?start_time=2023-03-01T00%3A00%3A00Z&end_time=2023-03-01T00%3A10%3A00Z`
-  
 
   useEffect(() => {
-    async function getPCons(){
+    async function getPprod(){
       const results = await axios.get(baseUrl,{headers:{
         'x-api-key':`${apiKey}`
          }});
-      setPCons(results.data);
-      setData(results.data.map(c => c.value))
+      setPprod(results.data);
+      
     }
-    getPCons();
+    getPprod();
 
 }, []);  
 
-const dataValue = pCons.map(c => {
+const dataValue = pProd.map(c => {
   return{ 
     value: c.value
   };
 });
 
-const dataTime = pCons.map(a => {
+const dataTime = pProd.map(a => {
   return {
     startTime: a.start_time
   }
 } );
 
-console.log(data)
+console.log(dataValue)
 
 
 
@@ -62,7 +58,7 @@ const datasets = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets:[
       {
-        data: [1,2,3],data
+        data: [1,2,3]
            
       }
     ]
@@ -108,4 +104,4 @@ const chartConfig ={
     </>
     );
 };
-export default PowerConsuption;
+export default PowerProduction;
