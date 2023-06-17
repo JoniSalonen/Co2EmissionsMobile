@@ -1,28 +1,24 @@
 import React, {useState, useEffect, useRef} from "react";
 import axios from "axios";
-import {
-  LineChart
-} from "react-native-chart-kit";
+import {LineChart } from "react-native-chart-kit";
 import { Text,Dimensions } from 'react-native';
 import DayInput from "./DayInput";
 
 const PowerConsuption = () => {
 
 
-  const [pCons, setPCons] = useState([]);
-  const chartRef = useRef();
-  const screenWidth = Dimensions.get("window").width;  // from react-native
+  const [pCons, setPCons] = useState();
+  const [pTime, setPTime] = useState();
 
   const [sDay, setSDay] = useState([`2023-05-01`]);
   const [sTime, setSTime] = useState([`01%3A00%3A00`]);
   const [eDay, setEDay] = useState([`2023-05-01`]);
   const [eTime, setETime] = useState([`01%3A10%3A00`]);
-  const [data, setData] = useState([])
 
     const startTime = `${sDay}T${sTime}Z`
     const endTime = `${eDay}T${eTime}Z`
 
-    const apiKey = `J0QSbDt3dr5FctqFckNvF59NCSBtdymR36sADRq2`
+    const apiKey = ``
     const variable = `265`
 
   
@@ -35,35 +31,22 @@ const PowerConsuption = () => {
       const results = await axios.get(baseUrl,{headers:{
         'x-api-key':`${apiKey}`
          }});
-      setPCons(results.data);
-      setData(results.data.map(c => c.value))
+      setPCons(results.data.map(c=> c.value));
+      setPTime(results.data.map(c=> c.start_time));
     }
     getPCons();
 
-}, []);  
-
-const dataValue = pCons.map(c => {
-  return{ 
-    value: c.value
-  };
-});
-
-const dataTime = pCons.map(a => {
-  return {
-    startTime: a.start_time
-  }
-} );
-
-console.log(data)
-
-
-
+    console.log(pCons);
+    console.log(pTime);
+   
+    
+}, []); 
 const datasets = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets:[
       {
-        data: [1,2,3],data
-           
+        label: "co2",
+        data: [1,1,3],   
       }
     ]
 };
@@ -77,6 +60,8 @@ const chartConfig ={
   style: {
     borderRadius: 16
   },
+  barPercentage: 0.5,
+  barRadius: 5,
   propsForDots: {
     r: "3",
     strokeWidth: "2",
@@ -84,26 +69,28 @@ const chartConfig ={
   }
 }
 
+
     return(   
       <>
       <Text>Grams of CO2 from kWh</Text>
-      <Text>{dataValue.map(c => c.value)}</Text>
-      <Text>{dataTime.map(c => c.startTime)}</Text>
       <LineChart
-        data={datasets}
-        width={screenWidth}
-        height={550}
-        yAxisSuffix="g/CO2"
-        yAxisInterval={0.5} // optional, defaults to 1
-        chartConfig={chartConfig}
-        bezier
-        horizontalLabelRotation={-50}
-        verticalLabelRotation={50}
-        style={{
-          marginVertical: 2,
-          borderRadius: 16
-        }}
-      />
+    data={
+    datasets
+  }
+  width={Dimensions.get("window").width}
+  chartConfig ={chartConfig}
+  height={550}
+  yAxisSuffix="g/CO2"
+  yAxisInterval={0.5} // optional, defaults to 1
+  bezier
+  horizontalLabelRotation={-50}
+  verticalLabelRotation={50}
+  style={{
+    marginVertical: 2,
+    borderRadius: 16
+  }}
+/>
+      
       <DayInput/>
     </>
     );

@@ -17,6 +17,7 @@ const PowerProduction = () => {
   const [sTime, setSTime] = useState([`01%3A00%3A00`]);
   const [eDay, setEDay] = useState([`2023-05-01`]);
   const [eTime, setETime] = useState([`01%3A10%3A00`]);
+ 
 
     const startTime = `${sDay}T${sTime}Z`
     const endTime = `${eDay}T${eTime}Z`
@@ -38,31 +39,17 @@ const PowerProduction = () => {
 
 }, []);  
 
-const dataValue = pProd.map(c => {
-  return{ 
-    value: c.value
-  };
-});
-
-const dataTime = pProd.map(a => {
-  return {
-    startTime: a.start_time
-  }
-} );
-
-console.log(dataValue)
-
 
 
 const datasets = {
     labels: ["January", "February", "March", "April", "May", "June"],
     datasets:[
       {
-        data: [1,2,3]
-           
+        data:[1,2,3]   
       }
     ]
 };
+
 
 const chartConfig ={
   backgroundColor: `rgb(50,205,50)`,
