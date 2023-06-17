@@ -13,12 +13,10 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import PowerConsuption from './components/PowerCons';
-import PowerProduction from './components/PowerProd';
+import PowerConsuption from './components/PowerConsumption';
+import PowerProduction from './components/PowerProduction';
 import Header from './components/Header';
 import Home from './components/HomeScreen';
-
-
 
 
 function App(): JSX.Element {
