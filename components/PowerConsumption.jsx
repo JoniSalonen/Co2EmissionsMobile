@@ -10,17 +10,15 @@ const PowerConsuption = () => {
   const  [pCons, setPCons] = useState([0]);
   const [pTime, setPTime] = useState();
 
-  const [sDay, setSDay] = useState(`2023-05-01`);
-  const [eDay, setEDay] = useState(`2023-05-03`);
-
-  const startTime = `${sDay}T00%3A00%3A00Z`;
-  const endTime = `${eDay}T23%3A59%3A59Z`;
+  // Sets default date to current date
+  const currDate = moment().format().slice(0,10)
+  const [sDay, setSDay] = useState([currDate]);
+  const [eDay, setEDay] = useState([currDate]);
 
   // ApiKey and Base url to fetch power consumption data from FinGrids open data platform 
   // You can get your APIkey from https://data.fingrid.fi/en/pages/apis 
-
   const apiKey = `J0QSbDt3dr5FctqFckNvF59NCSBtdymR36sADRq2`;
-  const baseUrl = `https://api.fingrid.fi/v1/variable/265/events/json?start_time=${startTime}&end_time=${endTime}`;
+  const baseUrl = `https://api.fingrid.fi/v1/variable/265/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`;
   
   // Fetching data using Axios Library
   useEffect(() => {
@@ -34,10 +32,6 @@ const PowerConsuption = () => {
       setPTime(results.data.map(c => c.start_time));
     }
     getPCons();
-
-    console.log(pCons);
-    //console.log(pTime);
-
   }, []);
 
 
