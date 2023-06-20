@@ -6,10 +6,12 @@ import DayInput from './DayInput';
 
 // This component creates the power production page to the application using Fingrids open data platform
 const PowerProduction = () => {
-  const [pProd, setPprod] = useState([]);
+  const [pProd, setPprod] = useState([0]);
+  const [CurrentDate, setCurrentDate] = useState ()
 
-  const [sDay, setSDay] = useState([`2023-05-01`]);
-  const [eDay, setEDay] = useState([`2023-05-01`]);
+
+  const [sDay, setSDay] = useState([`2023-06-20`]);
+  const [eDay, setEDay] = useState([`2023-06-20`]);
 
   // ApiKey and url to fetch data
   //you can get your APIkey from https://data.fingrid.fi/en/pages/apis 
@@ -25,7 +27,7 @@ const PowerProduction = () => {
           'x-api-key': `${apiKey}`,
         },
       });
-      setPprod(results.data);
+      setPprod(results.data.map(v => v.value));
     }
     getPprod();
   }, []);
@@ -33,13 +35,17 @@ const PowerProduction = () => {
 
   // Creating datasets to display in chart
   const datasets = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [
+      datasets: [
       {
-        data: [1, 2, 3],
+        data: pProd,
       },
     ],
   };
+
+   //setCurrentDate(new Date().toLocaleDateString)
+   //setCurrentDate(CurrentDate.slice(10,20))
+   //console.log(CurrentDate)
+
 
   //Configuring optional options to chart
   const chartConfig = {
@@ -61,8 +67,7 @@ const PowerProduction = () => {
   return (
     <>
       <Text>How many grams of Co2 is produced during production of 1 KWH in Finland</Text>
-      <Text>{dataValue.map(c => c.value)}</Text>
-      <Text>{dataTime.map(c => c.startTime)}</Text>
+      <DayInput />
       <LineChart
         data={datasets}
         width={Dimensions.get('window').width} // from react-native

@@ -28,10 +28,10 @@ function App(): JSX.Element {
       <Header/>      
       <NavigationContainer>
         <Stack.Navigator>
-        <Stack.Screen name='Power Production' component={PowerConsuption}/>
+        <Stack.Screen name='Power Production' component={PowerProduction}/>
         <Stack.Screen name='Home'component={Home}/>
 
-        <Stack.Screen name='Power Consumption' component={PowerProduction}/> 
+        <Stack.Screen name='Power Consumption' component={PowerConsuption}/> 
         </Stack.Navigator>
       </NavigationContainer>          
     </>

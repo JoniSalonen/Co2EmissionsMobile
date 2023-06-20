@@ -10,7 +10,7 @@ const DayInput = () => {
       <>
       
       <Text>
-        123123123123122
+        Select your wanted dates
       </Text>
       
       </>

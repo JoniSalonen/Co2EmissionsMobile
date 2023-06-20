@@ -7,11 +7,11 @@ import DayInput from './DayInput';
 // This component creates the power consumption page to the application using Fingrids open data platform
 const PowerConsuption = () => {
 
-  const [pCons, setPCons] = useState();
+  const  [pCons, setPCons] = useState([0]);
   const [pTime, setPTime] = useState();
 
   const [sDay, setSDay] = useState(`2023-05-01`);
-  const [eDay, setEDay] = useState(`2023-05-01`);
+  const [eDay, setEDay] = useState(`2023-05-03`);
 
   const startTime = `${sDay}T00%3A00%3A00Z`;
   const endTime = `${eDay}T23%3A59%3A59Z`;
@@ -35,7 +35,7 @@ const PowerConsuption = () => {
     }
     getPCons();
 
-    console.log(pCons?.[0]);
+    console.log(pCons);
     //console.log(pTime);
 
   }, []);
@@ -43,10 +43,9 @@ const PowerConsuption = () => {
 
   // Creating datasets to display in chart
   const datasets = {
-    labels:pTime,
     datasets: [
       {
-        data: [1, 2, 3],
+        data: pCons
       },
     ],
   };
@@ -61,18 +60,18 @@ const PowerConsuption = () => {
     style: {
       borderRadius: 16,
     },
-    barPercentage: 0.5,
-    barRadius: 5,
     propsForDots: {
       r: '3',
       strokeWidth: '2',
       stroke: 'rgb(255,50,50)',
     },
+    renderDotContent: pTime 
   };
 
   return (
     <>
-      <Text>How many grams of Co2 is produced during consuming 1 KWH in Finland</Text>
+    <DayInput />
+
       <LineChart
         data={datasets}
         width={Dimensions.get('window').width}
@@ -88,8 +87,9 @@ const PowerConsuption = () => {
           borderRadius: 16,
         }}
       />
+      <Text>How many grams of Co2 is produced during consuming 1 KWH in Finland</Text>
+      
 
-      <DayInput />
     </>
   );
 };
