@@ -17,7 +17,6 @@ const PowerProduction = () => {
   // ApiKey and url to fetch data
   //you can get your APIkey from https://data.fingrid.fi/en/pages/apis
   //insert your personal APIKEY here
-  const apiKey = `J0QSbDt3dr5FctqFckNvF59NCSBtdymR36sADRq2`;
   const baseUrl = `https://api.fingrid.fi/v1/variable/266/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`;
 
   // Fetching data using Axios Library
@@ -25,7 +24,7 @@ const PowerProduction = () => {
     async function getPprod() {
       const results = await axios.get(baseUrl, {
         headers: {
-          'x-api-key': `${apiKey}`,
+          'x-api-key': process.env.FinnGridApi,
         },
       });
       setPprod(results.data.map(v => v.value));
@@ -44,9 +43,9 @@ const PowerProduction = () => {
 
   //Configuring optional options to chart
   const chartConfig = {
-    backgroundColor: `rgb(50,205,50)`,
-    backgroundGradientFrom: `rgb(50,205,50)`,
-    backgroundGradientTo: `rgb(30,150,150)`,
+    backgroundColor: `rgb(0,25,50)`,
+    backgroundGradientFrom: `rgb(0,2,5)`,
+    backgroundGradientTo: `rgb(0,70,150)`,
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
@@ -55,7 +54,7 @@ const PowerProduction = () => {
     propsForDots: {
       r: '3',
       strokeWidth: '2',
-      stroke: 'rgb(255,50,50)',
+      stroke: 'rgb(50,50,50)',
     },
   };
 
