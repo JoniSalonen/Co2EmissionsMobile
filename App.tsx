@@ -1,39 +1,26 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-  Button
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import 'react-native-gesture-handler';
 
 import PowerConsuption from './components/PowerConsumption';
 import PowerProduction from './components/PowerProduction';
 import Header from './components/Header';
 import Home from './components/HomeScreen';
 
+const Drawer = createDrawerNavigator();
 
 function App(): JSX.Element {
-
-  const Stack = createNativeStackNavigator();
-  
   return (
     <>
-      <Header/>      
+      <Header />
       <NavigationContainer>
-        <Stack.Navigator>
-        <Stack.Screen name='Power Production' component={PowerProduction}/>
-        <Stack.Screen name='Home'component={Home}/>
-
-        <Stack.Screen name='Power Consumption' component={PowerConsuption}/> 
-        </Stack.Navigator>
-      </NavigationContainer>          
+        <Drawer.Navigator>
+          <Drawer.Screen name="Home" component={Home} />
+          <Drawer.Screen name="Power Production" component={PowerProduction} />
+          <Drawer.Screen name="Power Consumption" component={PowerConsuption} />
+        </Drawer.Navigator>
+      </NavigationContainer>
     </>
   );
 }

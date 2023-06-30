@@ -1,25 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import {LineChart} from 'react-native-chart-kit';
 import {Text, Dimensions} from 'react-native';
+import moment from 'moment';
+
 import DayInput from './DayInput';
 
 // This component creates the power consumption page to the application using Fingrids open data platform
 const PowerConsuption = () => {
-
-  const  [pCons, setPCons] = useState([0]);
-  const [pTime, setPTime] = useState();
+  const [pCons, setPCons] = useState([0]);
 
   // Sets default date to current date
-  const currDate = moment().format().slice(0,10)
+  const currDate = moment().format().slice(0, 10);
   const [sDay, setSDay] = useState([currDate]);
   const [eDay, setEDay] = useState([currDate]);
 
-  // ApiKey and Base url to fetch power consumption data from FinGrids open data platform 
-  // You can get your APIkey from https://data.fingrid.fi/en/pages/apis 
+  // ApiKey and Base url to fetch power consumption data from FinGrids open data platform
+  // You can get your APIkey from https://data.fingrid.fi/en/pages/apis
   const apiKey = `J0QSbDt3dr5FctqFckNvF59NCSBtdymR36sADRq2`;
   const baseUrl = `https://api.fingrid.fi/v1/variable/265/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`;
-  
+
   // Fetching data using Axios Library
   useEffect(() => {
     async function getPCons() {
@@ -34,12 +34,11 @@ const PowerConsuption = () => {
     getPCons();
   }, []);
 
-
   // Creating datasets to display in chart
   const datasets = {
     datasets: [
       {
-        data: pCons
+        data: pCons,
       },
     ],
   };
@@ -59,12 +58,11 @@ const PowerConsuption = () => {
       strokeWidth: '2',
       stroke: 'rgb(255,50,50)',
     },
-    renderDotContent: pTime 
   };
 
   return (
     <>
-    <DayInput />
+      <DayInput />
 
       <LineChart
         data={datasets}
@@ -81,9 +79,9 @@ const PowerConsuption = () => {
           borderRadius: 16,
         }}
       />
-      <Text>How many grams of Co2 is produced during consuming 1 KWH in Finland</Text>
-      
-
+      <Text>
+        How many grams of Co2 is produced during consuming 1 KWH in Finland
+      </Text>
     </>
   );
 };
