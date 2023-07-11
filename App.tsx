@@ -1,5 +1,10 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {View, useColorScheme} from 'react-native';
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import 'react-native-gesture-handler';
 
@@ -11,10 +16,13 @@ import Home from './components/HomeScreen';
 const Drawer = createDrawerNavigator();
 
 function App(): JSX.Element {
+  const theme = useColorScheme();
+
   return (
     <>
       <Header />
-      <NavigationContainer>
+
+      <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
         <Drawer.Navigator>
           <Drawer.Screen name="Home" component={Home} />
           <Drawer.Screen name="Power Production" component={PowerProduction} />

@@ -1,22 +1,35 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
 import axios from 'axios';
 import {LineChart} from 'react-native-chart-kit';
-import {Text, Dimensions} from 'react-native';
+import {Text, Dimensions, Button} from 'react-native';
 import moment from 'moment';
-
-import DayInput from './DayInput';
+import DatePicker from 'react-native-date-picker';
+import { useTheme } from '@react-navigation/native';
 
 // This component creates the power consumption page to the application using Fingrids open data platform
 const PowerConsuption = () => {
+  const colors = useTheme().colors;
+  
+
   const [pCons, setPCons] = useState([0]);
 
   // Sets default date to current date
   const currDate = moment().format().slice(0, 10);
   const [sDay, setSDay] = useState([currDate]);
-  const [eDay, setEDay] = useState([currDate]);
+  const [eDay, setEDay] = useState([sDay]);
 
-  // ApiKey and Base url to fetch power consumption data from FinGrids open data platform
-  // You can get your APIkey from https://data.fingrid.fi/en/pages/apis
+  const [date, setDate] = useState(new Date());
+  const [open, setOpen] = useState(false);
+
+  const [displayDate, setDisplayeDate] = useState([
+    date.toDateString().slice(3, 15),
+  ]);
+
+  // ApiKey and url to fetch data
+  //you can get your APIkey from https://data.fingrid.fi/en/pages/apis
+  // to insert your api key create .env file if not included and create a variable named FinnGridApi
+  // and there you can insert your personal APIKEY for example "FinnGridApi = YOURAPIKEYHERE"
+  
   const baseUrl = `https://api.fingrid.fi/v1/variable/265/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`;
 
   // Fetching data using Axios Library
@@ -24,7 +37,7 @@ const PowerConsuption = () => {
     async function getPCons() {
       const results = await axios.get(baseUrl, {
         headers: {
-          'x-api-key':process.env.FinnGridApi,
+          'x-api-key': process.env.FinnGridApi,
         },
       });
       setPCons(results.data.map(v => v.value));
@@ -58,9 +71,33 @@ const PowerConsuption = () => {
     },
   };
 
+  //returns the pages data 
   return (
     <>
-      <DayInput />
+      <Text style={{ color: colors.text }}>
+        {'How many grams of Co2 was produced between ' +
+          displayDate +
+          ' while consuming 1 KWH of power in Finland.'}
+      </Text>
+
+      <DatePicker
+        modal
+        mode="date"
+        date={date}
+        open={open}
+        onConfirm={date => {
+          setOpen(false);
+          setDate(date);
+          setSDay(date.toISOString().slice(0, 10));
+          setEDay(date.toISOString().slice(0, 10));
+          setDisplayeDate(date.toDateString().slice(3, 15));
+        }}
+        onCancel={() => {
+          setOpen(false);
+          theme = 'auto';
+        }}
+      />
+
 
       <LineChart
         data={datasets}
@@ -77,9 +114,12 @@ const PowerConsuption = () => {
           borderRadius: 16,
         }}
       />
-      <Text>
-        How many grams of Co2 is produced during consuming 1 KWH in Finland
-      </Text>
+
+      <Button
+        title="Click here to select your wanted dates"
+        onPress={() => setOpen(true)}
+        color={'blue'}
+      />
     </>
   );
 };

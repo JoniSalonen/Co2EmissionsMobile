@@ -1,18 +1,21 @@
 import React,{useState, useEffect, useRef} from "react";
-import {StyleSheet,TextInput} from 'react-native'
+import {StyleSheet,TextInput,View} from 'react-native'
 import {Text} from "react-native";
+import { useTheme } from '@react-navigation/native';
 
 
 const Header = () => {
+  const colors = useTheme().colors;
     
   
     return (
       <>
-      
-      <Text>
-        Tähän tulee hieno Headeri jossakin välissä
+
+      <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: 'lightblue' }}>  
+      <Text style={{ color: colors.text }}>
+        Fingrid co2 emissions 
       </Text>
-      
+      </View>
       </>
     );
 }
