@@ -7,16 +7,22 @@ import DatePicker from 'react-native-date-picker';
 import { useTheme } from '@react-navigation/native';
 
 // This component creates the power production page to the application using Fingrids open data platform
-const PowerProduction = () => { 
+const PowerProduction = () => {
+
+  //set Apps color based on your devices settings
   const colors = useTheme().colors;
-  
-  const [pProd, setPprod] = useState([0]);
 
   // Sets default date to current date
   const currDate = moment().format().slice(0, 10);
-  const [sDay, setSDay] = useState([currDate]);
-  const [eDay, setEDay] = useState([sDay]);
+  
+  // Sets the data from opensource
+  const [pProd, setPprod] = useState([0]);
 
+  // Sets dates to URL
+  const [sDay, setSDay] = useState([currDate]);
+  const [eDay, setEDay] = useState([currDate]);
+
+  // Sets dates from datepicker and controls opening of datepicker
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
@@ -30,9 +36,7 @@ const PowerProduction = () => {
   //you can get your APIkey from https://data.fingrid.fi/en/pages/apis
   // to insert your api key create .env file if not included and create a variable named FinnGridApi
   // and you can insert your personal APIKEY there and name it FinnGridApi = yourapikey
-  
-  const [baseUrl, setBaseUrl] =useState(`https://api.fingrid.fi/v1/variable/266/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`);
-
+  const baseUrl =`https://api.fingrid.fi/v1/variable/266/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`;
 
   // Fetching data using Axios Library
   useEffect(() => {
@@ -45,7 +49,7 @@ const PowerProduction = () => {
       setPprod(results.data.map(v => v.value));
     }
     getPprod();
-  }, []);
+  }, [sDay,eDay]);
 
   // Creating datasets to display in chart
   const datasets = {
@@ -71,7 +75,7 @@ const PowerProduction = () => {
       strokeWidth: '2',
       stroke: 'rgb(50,50,50)',
     },
-  };
+  };  
 
   return (
     <>

@@ -8,19 +8,25 @@ import { useTheme } from '@react-navigation/native';
 
 // This component creates the power consumption page to the application using Fingrids open data platform
 const PowerConsuption = () => {
+
+  //set Apps color based on your devices settings
   const colors = useTheme().colors;
   
-
-  const [pCons, setPCons] = useState([0]);
-
   // Sets default date to current date
   const currDate = moment().format().slice(0, 10);
+
+  // Sets the data from opensource
+  const [pCons, setPCons] = useState([0]);
+
+  // Sets dates to URL
   const [sDay, setSDay] = useState([currDate]);
   const [eDay, setEDay] = useState([sDay]);
 
+  // Sets dates from datepicker and controls opening of datepicker
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
+  //displays the date of wanted data
   const [displayDate, setDisplayeDate] = useState([
     date.toDateString().slice(3, 15),
   ]);
@@ -29,7 +35,6 @@ const PowerConsuption = () => {
   //you can get your APIkey from https://data.fingrid.fi/en/pages/apis
   // to insert your api key create .env file if not included and create a variable named FinnGridApi
   // and there you can insert your personal APIKEY for example "FinnGridApi = YOURAPIKEYHERE"
-  
   const baseUrl = `https://api.fingrid.fi/v1/variable/265/events/json?start_time=${sDay}T00%3A00%3A00Z&end_time=${eDay}T23%3A59%3A59Z`;
 
   // Fetching data using Axios Library
@@ -43,7 +48,7 @@ const PowerConsuption = () => {
       setPCons(results.data.map(v => v.value));
     }
     getPCons();
-  }, []);
+  }, [sDay,eDay]);
 
   // Creating datasets to display in chart
   const datasets = {
@@ -70,6 +75,7 @@ const PowerConsuption = () => {
       stroke: 'rgb(50,50,50)',
     },
   };
+   
 
   //returns the pages data 
   return (
@@ -98,8 +104,7 @@ const PowerConsuption = () => {
         }}
       />
 
-
-      <LineChart
+<LineChart
         data={datasets}
         width={Dimensions.get('window').width}
         chartConfig={chartConfig}
@@ -112,7 +117,8 @@ const PowerConsuption = () => {
         style={{
           marginVertical: 2,
           borderRadius: 16,
-        }}
+        }
+      }
       />
 
       <Button
@@ -124,3 +130,5 @@ const PowerConsuption = () => {
   );
 };
 export default PowerConsuption;
+
+
