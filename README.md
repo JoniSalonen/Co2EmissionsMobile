@@ -1,14 +1,11 @@
 # Co2EmissionsMobile
-
-Creator of this project was Joni Salonen
-
-# Idea
 This projects idea was
 
 # Used technology
 
+
 # Used APIs
-I used 2 different FinnGrids API
+I used 2 different FinnGrids API 
 
 Electricity consumption
 https://data.fingrid.fi/en/dataset/suomessa-kulutetun-sahkon-paastokerroin-reaaliaikatieto
@@ -16,6 +13,13 @@ https://data.fingrid.fi/en/dataset/suomessa-kulutetun-sahkon-paastokerroin-reaal
 Electrity production
 https://data.fingrid.fi/en/dataset/suomen-sahkontuotannon-paastokerroin-reaaliaikatieto
 
-# Instructions
+# Instructions how to deploy project
+If you want to use the code you can follow instructions from https://reactnative.dev/docs/environment-setup to setup react native enviroment.
 
-# Demo-video link
+After that you can pull this project to that file and run the project in command prompt, power shell etc.
+"npx react-native run-android" is command that works in command prompt.
+
+
+
+# Link to demo video
+
