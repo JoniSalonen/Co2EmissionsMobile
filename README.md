@@ -16,8 +16,7 @@ https://data.fingrid.fi/en/dataset/suomen-sahkontuotannon-paastokerroin-reaaliai
 # Instructions how to deploy project
 If you want to use the code you can follow instructions from https://reactnative.dev/docs/environment-setup to setup react native enviroment.
 
-After that you can pull this project to that file and run the project in command prompt, power shell etc.
-
+After that you can pull this project to that file and run the project in command prompt, power shell etc.     
 "npx react-native run-android" is command that works in command prompt.
 
 
