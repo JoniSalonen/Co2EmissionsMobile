@@ -12,7 +12,8 @@ const Home = () => {
 
   const styles = StyleSheet.create({
     container: {
-      width: 450, 
+      width: 450,
+      height: 150, 
       flex: 1, 
       alignItems: 'center', 
       justifyContent: 'center'
