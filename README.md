@@ -1,4 +1,4 @@
-# Co2EmissionsMobile
+## Co2EmissionsMobile
 This projects idea was to create mobile application to display power consumption and power production graphs from FinGrids open source data platform.
 
 # Used technology
@@ -8,14 +8,14 @@ project was created using JavaScript with React Native development enviroment in
 
 [React-native-chart-kit](https://www.npmjs.com/package/react-native-chart-kit) was used to to display the data. 
 
-[Moment](https://momentjs.com/) and [Date picker](https://www.npmjs.com/package/react-datepicker) was used to get current date and enabling user to set date.
+[Moment](https://momentjs.com/) and [Date picker](https://www.npmjs.com/package/react-datepicker) was used to get current date and enabling user to switch between dates.
 
 # Used APIs
 I used 2 different [FinGrids](https://data.fingrid.fi/open-data-forms/registration/) APIs was used to fetch necessary data to display
 [Electricity consumption](https://data.fingrid.fi/en/dataset/suomessa-kulutetun-sahkon-paastokerroin-reaaliaikatieto) and [Electrity production](https://data.fingrid.fi/en/dataset/suomen-sahkontuotannon-paastokerroin-reaaliaikatieto)
 
 # Instructions how to deploy project
-If you want to run the code you can follow instructions from https://reactnative.dev/docs/environment-setup to setup react native enviroment.
+If you want to run the code you can follow instructions from [React Natives website](https://reactnative.dev/docs/environment-setup) to setup react native enviroment.
 
 After that you can pull the project from [GitHub](https://github.com/JoniSalonen/Co2EmissionsMobile)
 and fetch your own apikey from [FinGrid](https://data.fingrid.fi/open-data-forms/registration/)
