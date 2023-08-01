@@ -1,4 +1,4 @@
-## Co2EmissionsMobile
+# Co2EmissionsMobile
 This projects idea was to create mobile application to display power consumption and power production graphs from FinGrids open source data platform.
 
 # Used technology
