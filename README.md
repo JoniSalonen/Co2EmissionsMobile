@@ -15,12 +15,10 @@ I used 2 different [FinGrids](https://data.fingrid.fi/open-data-forms/registrati
 [Electricity consumption](https://data.fingrid.fi/en/dataset/suomessa-kulutetun-sahkon-paastokerroin-reaaliaikatieto) and [Electrity production](https://data.fingrid.fi/en/dataset/suomen-sahkontuotannon-paastokerroin-reaaliaikatieto)
 
 # Instructions how to deploy project
-If you want to run the code you can follow instructions from [React Natives website](https://reactnative.dev/docs/environment-setup) to setup react native enviroment.
-
-After that you can pull the project from [GitHub](https://github.com/JoniSalonen/Co2EmissionsMobile)
+If you want to run the code you can pull the project from [GitHub](https://github.com/JoniSalonen/Co2EmissionsMobile)
 and fetch your own apikey from [FinGrid](https://data.fingrid.fi/open-data-forms/registration/)
 
-After pulling from GitHub and fething ApiKey from [FinGrid](https://data.fingrid.fi/open-data-forms/registration/) you need open the code. And to create " .env " file and write " FinnGridApi = " in that file and insert your Apikey there.
+After pulling from GitHub and fething ApiKey from [FinGrid](https://data.fingrid.fi/open-data-forms/registration/) you need open the code. And to create " .env " file and write there " FinnGridApi = " in .env file and insert your Apikey there.
 
 Now you can run the project in command line, powershell etc. 
 "npx react-native run-android" is command that works in command prompt.
