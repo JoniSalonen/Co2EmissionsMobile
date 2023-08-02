@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {LineChart} from 'react-native-chart-kit';
 import {Text, Dimensions, Button} from 'react-native';
@@ -19,8 +19,8 @@ const PowerConsuption = () => {
   const [pCons, setPCons] = useState([0]);
 
   // Sets dates to URL
-  const [sDay, setSDay] = useState([currDate]);
-  const [eDay, setEDay] = useState([sDay]);
+  const [sDay, setSDay] = useState(["2023-07-31"]);
+  const [eDay, setEDay] = useState(["2023-07-31"]);
 
   // Sets dates from datepicker and controls opening of datepicker
   const [date, setDate] = useState(new Date());

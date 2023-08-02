@@ -11,7 +11,7 @@ const Header = () => {
     return (
       <>
 
-      <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: 'lightblue' }}>  
+      <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: 'lightgray' }}>  
       <Text style={{ color: colors.text }}>
         Fingrid co2 emissions 
       </Text>
