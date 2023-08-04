@@ -1,7 +1,7 @@
 # Co2EmissionsMobile
 This projects idea was to create mobile application to display power consumption and power production graphs from FinGrids open source data platform.
 <br><br>
-<img width="465" alt="Kuva1" src=".components/img/Fingrid_logo_RGB.png">
+<img width="465" alt="Kuva1" src="components/img/Fingrid_logo_RGB.png">
 
 # Used technology
 project was created using JavaScript with React Native development enviroment in Visual Studio Code. 
