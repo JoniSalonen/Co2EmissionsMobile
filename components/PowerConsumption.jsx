@@ -4,14 +4,13 @@ import {LineChart} from 'react-native-chart-kit';
 import {Text, Dimensions, Button} from 'react-native';
 import moment from 'moment';
 import DatePicker from 'react-native-date-picker';
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 
 // This component creates the power consumption page to the application using Fingrids open data platform
 const PowerConsuption = () => {
-
   //set Apps color based on your devices settings
   const colors = useTheme().colors;
-  
+
   // Sets default date to current date
   const currDate = moment().format().slice(0, 10);
 
@@ -19,8 +18,8 @@ const PowerConsuption = () => {
   const [pCons, setPCons] = useState([0]);
 
   // Sets dates to URL
-  const [sDay, setSDay] = useState(["2023-07-31"]);
-  const [eDay, setEDay] = useState(["2023-07-31"]);
+  const [sDay, setSDay] = useState([currDate]);
+  const [eDay, setEDay] = useState([currDate]);
 
   // Sets dates from datepicker and controls opening of datepicker
   const [date, setDate] = useState(new Date());
@@ -48,7 +47,7 @@ const PowerConsuption = () => {
       setPCons(results.data.map(v => v.value));
     }
     getPCons();
-  }, [sDay,eDay]);
+  }, [sDay, eDay]);
 
   // Creating datasets to display in chart
   const datasets = {
@@ -75,12 +74,11 @@ const PowerConsuption = () => {
       stroke: 'rgb(50,50,50)',
     },
   };
-   
 
-  //returns the pages data 
+  //returns the pages data
   return (
     <>
-      <Text style={{ color: colors.text }}>
+      <Text style={{color: colors.text}}>
         {'How many grams of Co2 was produced between ' +
           displayDate +
           ' while consuming 1 KWH of power in Finland.'}
@@ -95,7 +93,7 @@ const PowerConsuption = () => {
           setOpen(false);
           setDate(date);
           setSDay(date.toISOString().slice(0, 10));
-          setEDay(date.toISOString().slice(0, 10));
+          setEDay(sDay);
           setDisplayeDate(date.toDateString().slice(3, 15));
         }}
         onCancel={() => {
@@ -104,7 +102,7 @@ const PowerConsuption = () => {
         }}
       />
 
-<LineChart
+      <LineChart
         data={datasets}
         width={Dimensions.get('window').width}
         chartConfig={chartConfig}
@@ -117,8 +115,7 @@ const PowerConsuption = () => {
         style={{
           marginVertical: 2,
           borderRadius: 16,
-        }
-      }
+        }}
       />
 
       <Button
@@ -130,5 +127,3 @@ const PowerConsuption = () => {
   );
 };
 export default PowerConsuption;
-
-

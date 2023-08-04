@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, useColorScheme} from 'react-native';
+import {useColorScheme} from 'react-native';
 import {
   NavigationContainer,
   DarkTheme,
