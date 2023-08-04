@@ -25,7 +25,7 @@ const Home = () => {
         />
       </View>
       <View style={styles.container}>
-        <Text>This is project was made as an hobby during summer 2023</Text>
+        <Text>This is project was made during summer 2023</Text>
       </View>
     </>
   );
