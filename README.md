@@ -30,6 +30,6 @@ Now you can run the project in command line, powershell etc.
 "npx react-native run-android" is command that works in command prompt.
 
 # Links
-[Video]()   
+[Video](https://youtu.be/5PqXXgRobOE )   
 [Creator](https://github.com/JoniSalonen)
 
