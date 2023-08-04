@@ -15,6 +15,8 @@ project was created using JavaScript with React Native development enviroment in
 # Used APIs
 I used 2 different [FinGrids](https://data.fingrid.fi/open-data-forms/registration/) APIs was used to fetch necessary data to display
 [Electricity consumption](https://data.fingrid.fi/en/dataset/suomessa-kulutetun-sahkon-paastokerroin-reaaliaikatieto) and [Electrity production](https://data.fingrid.fi/en/dataset/suomen-sahkontuotannon-paastokerroin-reaaliaikatieto)
+<br>
+<br>
 <img width="465" alt="Kuva1" src="components/img/Screenshot2.png.png">
 <img width="465" alt="Kuva1" src="components/img/Screenshot3.png.png">
 
